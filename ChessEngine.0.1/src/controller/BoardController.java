@@ -3,9 +3,14 @@ package controller;
 import model.chess.Board;
 
 public class BoardController {
-	Board board;
+	private Board board;
 	
 	public BoardController() {
-		this.board = new Board();
+		board = new Board();
+	}
+
+	public boolean isSquareEmpty(String string) {
+		
+		return board.isEmptySquare(0);
 	}
 }

@@ -32,9 +32,19 @@ class BoardTest {
 
 	@Test
 	void testSetUpBoard() {
-		fail("Not yet implemented");
+		
 	}
 
+	@Test
+	void testIsEmptySquareSingleInt() {
+		assertTrue(board.isEmptySquare(25));
+	}
+	
+	@Test
+	void testIsEmptySquareXYInt() {
+		fail("Not yet implemented");
+	}
+	
 	@Test
 	void testGetStringRepOfBoardState() {
 		fail("Not yet implemented");
