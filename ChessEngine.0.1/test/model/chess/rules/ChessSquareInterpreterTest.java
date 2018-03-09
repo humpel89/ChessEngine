@@ -35,59 +35,77 @@ class ChessSquareInterpreterTest {
 	}
 	
 	@Test
-	void testConvertSimpleLetter() throws IncorrectStringFormatException {
-		assertEquals(0, cInterpreter.convert("A1"));
+	void testConvertSimplePosition() throws IncorrectStringFormatException {
+		assertEquals(0, cInterpreter.interpretToInt("A1"));
 	}
 	
+	
+		/*
+	     * Learned new way to test throws from: 
+	     * https://stackoverflow.com/questions/40268446/junit-5-how-to-assert-an-exception-is-thrown
+	     */
 	@Test
 	void testThrowsIncorrectStringFormatException() {    
 	    assertThrows(IncorrectStringFormatException.class,
 	            ()->{
-	            	cInterpreter.convert("A12");
+	            	cInterpreter.interpretToInt("A12");
 	            });
 	    assertThrows(IncorrectStringFormatException.class,
 	            ()->{
-	            	cInterpreter.convert("A");
+	            	cInterpreter.interpretToInt("A");
 	            });
-	    /*
-	     * Learned new way to test throws from: 
-	     * https://stackoverflow.com/questions/40268446/junit-5-how-to-assert-an-exception-is-thrown
-	     */
+	    assertThrows(IncorrectStringFormatException.class,
+	            ()->{
+	            	cInterpreter.interpretToInt("eA");
+	            });
+	    assertThrows(IncorrectStringFormatException.class,
+	            ()->{
+	            	cInterpreter.interpretToInt("B9");
+	            });
+	    assertThrows(IncorrectStringFormatException.class,
+	            ()->{
+	            	cInterpreter.interpretToInt("E10");
+	            });
+	    assertThrows(IncorrectStringFormatException.class,
+	            ()->{
+	            	cInterpreter.interpretToInt("10");
+	            });
+
 	}
 	
 	@Test
 	void testConvertARow() throws IncorrectStringFormatException {
-		assertEquals(0, cInterpreter.convert("A1"));
-		assertEquals(1, cInterpreter.convert("B1"));
-		assertEquals(2, cInterpreter.convert("C1"));
-		assertEquals(3, cInterpreter.convert("D1"));
-		assertEquals(4, cInterpreter.convert("E1"));
-		assertEquals(5, cInterpreter.convert("F1"));
-		assertEquals(6, cInterpreter.convert("G1"));
-		assertEquals(7, cInterpreter.convert("H1"));
+		assertEquals(0, cInterpreter.interpretToInt("A1"));
+		assertEquals(1, cInterpreter.interpretToInt("B1"));
+		assertEquals(2, cInterpreter.interpretToInt("C1"));
+		assertEquals(3, cInterpreter.interpretToInt("D1"));
+		assertEquals(4, cInterpreter.interpretToInt("E1"));
+		assertEquals(5, cInterpreter.interpretToInt("F1"));
+		assertEquals(6, cInterpreter.interpretToInt("G1"));
+		assertEquals(7, cInterpreter.interpretToInt("H1"));
 	}
 	
 	@Test
 	void testConvertColumns() throws IncorrectStringFormatException {
-		assertEquals(0, cInterpreter.convert("A1"));
-		assertEquals(8, cInterpreter.convert("A2"));
-		assertEquals(16, cInterpreter.convert("A3"));
-		assertEquals(24, cInterpreter.convert("A4"));
-		assertEquals(32, cInterpreter.convert("A5"));
-		assertEquals(40, cInterpreter.convert("A6"));
-		assertEquals(48, cInterpreter.convert("A7"));
-		assertEquals(56, cInterpreter.convert("A8"));
+		assertEquals(0, cInterpreter.interpretToInt("A1"));
+		assertEquals(8, cInterpreter.interpretToInt("A2"));
+		assertEquals(16, cInterpreter.interpretToInt("A3"));
+		assertEquals(24, cInterpreter.interpretToInt("A4"));
+		assertEquals(32, cInterpreter.interpretToInt("A5"));
+		assertEquals(40, cInterpreter.interpretToInt("A6"));
+		assertEquals(48, cInterpreter.interpretToInt("A7"));
+		assertEquals(56, cInterpreter.interpretToInt("A8"));
 	}
 	
 	@Test
 	void testConvertRowsAndCols() throws IncorrectStringFormatException {
-		assertEquals(0, cInterpreter.convert("A1"));
-		assertEquals(16, cInterpreter.convert("A3"));
-		assertEquals(56, cInterpreter.convert("A8"));
-		assertEquals(9, cInterpreter.convert("B2"));
-		assertEquals(34, cInterpreter.convert("C5"));
-		assertEquals(4, cInterpreter.convert("E1"));
-		assertEquals(46, cInterpreter.convert("G6"));
+		assertEquals(0, cInterpreter.interpretToInt("A1"));
+		assertEquals(16, cInterpreter.interpretToInt("A3"));
+		assertEquals(56, cInterpreter.interpretToInt("A8"));
+		assertEquals(9, cInterpreter.interpretToInt("B2"));
+		assertEquals(34, cInterpreter.interpretToInt("C5"));
+		assertEquals(4, cInterpreter.interpretToInt("E1"));
+		assertEquals(46, cInterpreter.interpretToInt("G6"));
 	}
 	
 }
