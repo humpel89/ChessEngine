@@ -32,7 +32,7 @@ class BoardTest {
 
 	@Test
 	void testSetUpBoard() {
-		
+		board.setUpBoard("A2A4 B7B6 B");
 	}
 
 	@Test
@@ -42,12 +42,15 @@ class BoardTest {
 	
 	@Test
 	void testIsEmptySquareXYInt() {
-		fail("Not yet implemented");
+		assertTrue(board.isEmptySquare(16));
+		assertTrue(board.isEmptySquare(37));
+		assertTrue(board.isEmptySquare(41));
+		assertTrue(board.isEmptySquare(47));
 	}
 	
 	@Test
 	void testGetStringRepOfBoardState() {
-		fail("Not yet implemented");
+		assertTrue(board.isEmptySquare(6));
 	}
 
 	@Test

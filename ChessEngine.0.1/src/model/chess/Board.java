@@ -14,6 +14,8 @@ import model.chess.pieces.*;
 public class Board implements ChessBoard {
 
 	private final int EMPTY = 0;
+	
+	private final String FEN_START_POSITION = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
 
 	private Square[] squares;
 	private ArrayList<ChessPiece> blackPieces;
@@ -158,14 +160,9 @@ public class Board implements ChessBoard {
 		return sb.toString();
 	}
 
-
-
-
-
 	public  ChessPiece getPieceAt(int i) {
 		return squares[i].occupatedBy();
 	}
-
 
 	public boolean isEmptySquare(int i) {
 		return squares[i].isEmpty();
