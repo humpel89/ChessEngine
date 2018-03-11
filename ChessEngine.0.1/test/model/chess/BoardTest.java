@@ -32,7 +32,7 @@ class BoardTest {
 
 	@Test
 	void testSetUpBoard() {
-		board.setUpBoard("A2A4 B7B6 B");
+		board.setUpBoard("r1bqkb1r/ppp2ppp/2n1pn2/3p4/2P5/5NP1/PP1PPPBP/RNBQ1RK1 b kq - 4 5");
 	}
 
 	@Test

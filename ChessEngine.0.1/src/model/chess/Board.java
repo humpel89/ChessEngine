@@ -122,7 +122,7 @@ public class Board implements ChessBoard {
 
 //	public String toString() {
 //		String boardRepresentation = 
-//				"   a  b  c  d  e  f  g  h   \n" 
+//					      "   a  b  c  d  e  f  g  h   \n" 
 //						+ "8 [ ][ ][ ][ ][ ][ ][ ][ ] 8\n" 
 //						+ "7 [ ][ ][ ][ ][ ][ ][ ][ ] 7\n" 
 //						+ "6 [ ][ ][ ][ ][ ][ ][ ][ ] 6\n" 
