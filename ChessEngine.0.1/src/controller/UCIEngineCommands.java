@@ -7,11 +7,13 @@ package controller;
  */
 public interface UCIEngineCommands {
 
-	public String uci();
+	public boolean move(String move);
+	
+	public void uci();
 	
 	public void debug();
 	
-	public String isReady();
+	public void isReady();
 	
 	/* example strings for setOption:
 	 * "setoption name Nullmove value true\n"
@@ -24,7 +26,7 @@ public interface UCIEngineCommands {
 	
 	public void register(String string);
 	
-	public String uciNewGame();
+	public void uciNewGame();
 	
 	public void position (String fenString);
 	

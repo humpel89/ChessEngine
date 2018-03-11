@@ -4,9 +4,9 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.*;
+import java.io.IOException;
 
-import controller.utilities.ChessSquareInterpreter;
+import javax.swing.*;
 
 public class ChessGui  {
 
@@ -22,9 +22,19 @@ public class ChessGui  {
 	private ChessSquareButton targetPos;
 
 	private boolean hasChosenFromPos = false;
+	private EngineCommunicator ec;
 
-	public ChessGui() {
+	public ChessGui() throws IOException {
+
 		setFramesAndPanels();
+		ec = new EngineCommunicator();
+	}
+
+	@SuppressWarnings("unused")
+	public static void main(String[] args) throws IOException {
+
+		ChessGui gui = new ChessGui();
+
 
 	}
 
@@ -102,6 +112,7 @@ public class ChessGui  {
 				{
 					public void actionPerformed(ActionEvent e)
 					{
+						ec.uci();
 						if(hasChosenFromPos) {
 							if(getButton().getXY().matches(getChosenFromPosition().getXY())) {
 								resetLocations();
@@ -109,7 +120,7 @@ public class ChessGui  {
 							else {
 								setTargetPosition(getButton());
 								if(sendToEngine(getChosenFromPosition(), getChosenTargetPosition())) {
-									doMove();
+									doMove(getChosenFromPosition(), getChosenTargetPosition());
 									resetLocations();
 								}
 							}
@@ -121,7 +132,7 @@ public class ChessGui  {
 								hasChosenFromPos = true;
 							}
 							else
-							getButton().setSelected(false);
+								getButton().setSelected(false);
 						}
 
 					}
@@ -136,24 +147,20 @@ public class ChessGui  {
 
 	}
 
-	private void doMove() {
-
+	private void doMove(ChessSquareButton from, ChessSquareButton to) {
+		to.setIcon(from.getIcon());
+		from.setIconEmpty();
 	}
 
 	private boolean sendToEngine(ChessSquareButton from, ChessSquareButton to) {
 		System.out.println("Checks if valid move: " + from.getXY() + " " + to.getXY());
-		//Ersätt TO med FROMS bild,
-		if(from.isEmpty()) {
-			return false;
-		}
-		else {
-			to.setIcon(from.getIcon());
-			from.setIconEmpty();
-			//BUGG if empty square is pressed, it will delete target image also
-			//Tilldela chess_empty till FROMS bild.
-			//TODO implement alternative to fail if not a valid move.
-			return true;
-		}
+		//IF Engine replies with valid move:
+		//	Exectute move and reply with true/valid move
+		return !from.isEmpty();
+
+		//BUGG if empty square is pressed, it will delete target image also
+		//Tilldela chess_empty till FROMS bild.
+		//TODO implement alternative to fail if not a valid move.
 	}
 
 	private void resetLocations() {
@@ -191,17 +198,6 @@ public class ChessGui  {
 	private void setTargetPosition(ChessSquareButton target) {
 		this.targetPos = target;
 	}
+	
 
-
-	private void addButtonValue() {
-		// TODO Auto-generated method stub
-
-	}
-
-	public static void main(String[] args) {
-
-		ChessGui gui = new ChessGui();
-
-
-	}
 }
