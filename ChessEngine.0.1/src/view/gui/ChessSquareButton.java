@@ -1,13 +1,9 @@
 package view.gui;
 
-import java.awt.Button;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-
-import javax.imageio.ImageIO;
+import javax.swing.JButton;
 
 @SuppressWarnings("serial")
-public class ChessSquareButton extends Button{
+public class ChessSquareButton extends JButton {
 
 	private char xAxis;
 	private char yAxis;

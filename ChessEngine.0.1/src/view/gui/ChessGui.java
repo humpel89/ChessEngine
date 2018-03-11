@@ -9,10 +9,13 @@ import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.ImageObserver;
+import java.io.File;
 import java.util.Iterator;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+
+import model.chess.rules.PieceType;
 
 public class ChessGui  {
 
@@ -26,9 +29,9 @@ public class ChessGui  {
 	
 	private String fromPos = "";
 	private String targetPos = "";
-	
+
 	private boolean hasChosenFromPos = false;
-	
+
 	public ChessGui() {
 		setFramesAndPanels();
 
@@ -41,76 +44,86 @@ public class ChessGui  {
 	private void setFramesAndPanels() {
 		gui = new JFrame();
 		gui.setSize(600, 600);
-		
+
 		chessPanel = new JPanel();
 		chessPanel.setSize(600, 600);
 		chessPanel.setLayout(new GridLayout(8, 8));
 		chessSquares = new ChessSquareButton[ROWS][COLLUMNS];
 
 		createAndAddBoardButtonsToChessPanel();
+		attImagesToChessSquares();
 		
 		gui.add(chessPanel);
 		gui.setVisible(true);
-
+		gui.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 	}
-
-	private void createAndAddBoardButtonsToChessPanel() {
-		ChessSquareButton b;
-		for (int i = 0; i < ROWS; i++) {
-			for (int j = 0; j < COLLUMNS; j++) {
-				b = new ChessSquareButton(xAxis[j], yAxis[i]); 
-				if((i % 2 == 1 && j % 2 == 1) || (i % 2 == 0 && j % 2 == 0)){
-					b.setBackground(Color.BLACK);
-				}
-				else {
-					b.setBackground(Color.WHITE);
-				}
-				addImageToButton(b);
-				b.addActionListener(new ChessSquareActionListener(b.getXY())
-				   {
-				      public void actionPerformed(ActionEvent e)
-				      {
-				    	  if(hasChosenFromPos) {
-				    		   	if(getXY().matches(getChosenFromPosition())) {
-				    		   		resetLocations();
-						    	}
-						    	else {
-						    		setTargetPosition(getXY());
-						    		if(sendToEngine(getChosenFromPosition(), getChosenTargetPosition()));
-						    			doMove();
-						    			resetLocations();
-						    	}
-				    		
-				    	  }
-				    	  else {
-				    		  setFromPosition(getXY());
-				    	  	  hasChosenFromPos = true;
-				    	  }
-				   
-				      }
-
-
-				    });
-				chessSquares[j][i] = b;
-				chessPanel.add(b);
-			}
-			
+	
+	public void attImagesToChessSquares() {
+		chessSquares[0][0].setIcon(getImage("Chess_rdt60.png"));;
+		chessSquares[1][0].setIcon(getImage("Chess_ndt60.png"));;
+		chessSquares[2][0].setIcon(getImage("Chess_bdt60.png"));;
+		chessSquares[3][0].setIcon(getImage("Chess_qdt60.png"));;
+		chessSquares[4][0].setIcon(getImage("Chess_kdt60.png"));;
+		chessSquares[5][0].setIcon(getImage("Chess_bdt60.png"));;
+		chessSquares[6][0].setIcon(getImage("Chess_ndt60.png"));;
+		chessSquares[7][0].setIcon(getImage("Chess_rdt60.png"));;
+		
+		for (int i = 0; i < 8; i++) {
+			chessSquares[i][1].setIcon(getImage("Chess_pdt60.png"));
 		}
 		
 	}
 	
-	private void addImageToButton(ChessSquareButton b) {
-		try {
-			Image img = ImageIO.read(getClass().getResource("resources/images/Chess_bdt60.png"));
-			b.prepareImage(img, b);
-		} catch (Exception e) {
-			// TODO: handle exception
+	public ImageIcon getImage(String imgName) {
+		return new ImageIcon(getClass().getResource("/resources/chess_icons/"+ imgName));
+	}
+
+	private void createAndAddBoardButtonsToChessPanel() {
+		ChessSquareButton b;
+		for (int i = 0; i < COLLUMNS; i++) {
+			for (int j = 0; j < ROWS; j++) {
+				b = new ChessSquareButton(xAxis[j], yAxis[i]); 
+				if((i % 2 == 1 && j % 2 == 1) || (i % 2 == 0 && j % 2 == 0)){
+					b.setBackground(Color.DARK_GRAY);
+				}
+				else {
+					b.setBackground(Color.WHITE);
+				}
+				b.addActionListener(new ChessSquareActionListener(b.getXY())
+				{
+					public void actionPerformed(ActionEvent e)
+					{
+						if(hasChosenFromPos) {
+							if(getXY().matches(getChosenFromPosition())) {
+								resetLocations();
+							}
+							else {
+								setTargetPosition(getXY());
+								if(sendToEngine(getChosenFromPosition(), getChosenTargetPosition()));
+								doMove();
+								resetLocations();
+							}
+
+						}
+						else {
+							setFromPosition(getXY());
+							hasChosenFromPos = true;
+						}
+
+					}
+
+
+				});
+				chessSquares[j][i] = b;
+				chessPanel.add(b);
+			}
+
 		}
-		
+
 	}
 
 	private void doMove() {
-		
+
 	}
 
 	private boolean sendToEngine(String from, String to) {
@@ -123,42 +136,42 @@ public class ChessGui  {
 		hasChosenFromPos = false;
 		setFromPosition("");
 		setTargetPosition("");
-		
+
 	}
 
 	public static abstract class ChessSquareActionListener implements ActionListener {
-	    private String xy;
+		private String xy;
 
-	    public ChessSquareActionListener(String square) {
-	        this.xy = square;
-	    }
-	    
-	    public String getXY() {
-	    	return xy;
-	    }
+		public ChessSquareActionListener(String square) {
+			this.xy = square;
+		}
+
+		public String getXY() {
+			return xy;
+		}
 
 	}
-	
+
 	private String getChosenFromPosition() {
 		return fromPos;
 	}
-	
+
 	private void setFromPosition(String from) {
 		this.fromPos = from;
 	}
-	
+
 	private String getChosenTargetPosition() {
 		return targetPos;
 	}
-	
+
 	private void setTargetPosition(String target) {
 		this.targetPos = target;
 	}
-	
-	
+
+
 	private void addButtonValue() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public static void main(String[] args) {
