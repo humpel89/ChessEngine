@@ -12,6 +12,7 @@ public class NormalMove implements Move {
 	@Override
 	public void setMove(String stringOfMove) throws NoValidCoordinateException {
 		move(stringOfMove.substring(0, 2), stringOfMove.substring(3, 5));
+		
 	}
 
 	@Override
@@ -21,8 +22,8 @@ public class NormalMove implements Move {
 	}
 
 	private int getIntFromCoordinate(String coordinate) throws NoValidCoordinateException {
-		int x = getNbrFromChar(coordinate.charAt(0));
-		int y = Integer.valueOf(coordinate.substring(1));
+		int x = getNbrFromChar(coordinate.toLowerCase().charAt(0));
+		int y = Integer.valueOf(coordinate.toLowerCase().substring(1));
 		//Calc correct 0-63 nbr
 		int f = 8 * (y-1) + x;
 		return f;

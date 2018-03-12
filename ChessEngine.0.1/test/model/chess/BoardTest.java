@@ -33,6 +33,7 @@ class BoardTest {
 	@Test
 	void testSetUpBoard() {
 		board.setUpBoard("r1bqkb1r/ppp2ppp/2n1pn2/3p4/2P5/5NP1/PP1PPPBP/RNBQ1RK1 b kq - 4 5");
+		fail("not finished");
 	}
 
 	@Test
@@ -50,7 +51,7 @@ class BoardTest {
 	
 	@Test
 	void testGetStringRepOfBoardState() {
-		assertTrue(board.isEmptySquare(6));
+		fail("not impl");
 	}
 
 	@Test

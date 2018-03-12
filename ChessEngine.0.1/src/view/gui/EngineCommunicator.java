@@ -26,7 +26,7 @@ public class EngineCommunicator {
 	}
 
 	public boolean isReady() {
-		return "isReadyOk".equals(engine.tell("isready"));
+		return "ReadyOk".equals(engine.tell("isready"));
 	}
 
 	public void setOption(String string) {

@@ -1,5 +1,10 @@
 package model.chess.rules;
 
+import java.util.ArrayList;
+
+import model.chess.Board;
+import model.chess.moves.Move;
+
 /*
  * Singleton design pattern
  */
@@ -15,5 +20,16 @@ public class MoveRules {
 			 moveRules = new MoveRules();
 		}
 		return moveRules;
+	}
+	
+	public boolean ifValidMove(Board board, Move move) {
+		
+		
+		
+		return false;
+	}
+	
+	public ArrayList<Move> getAllMovesForPieceAt(String from, Board board){
+		return null;
 	}
 }
