@@ -19,5 +19,10 @@ public abstract class ChessPiece {
 	public MoveRules getMoveRule() {
 		return moveRule;
 	}
+
+	public boolean checkMoveToPossible(int to) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 }

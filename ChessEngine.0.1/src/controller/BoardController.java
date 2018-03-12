@@ -23,18 +23,19 @@ public class BoardController {
 	}
 
 	public boolean move(String string) throws IncorrectStringFormatException, NoValidCoordinateException {
-		if (string.length() > 5) {
-			throw new IncorrectStringFormatException("A move string can only have a max of 5 characters in length.");
+		if (string.length() > 5 || string.charAt(2) != ' ') {
+			throw new IncorrectStringFormatException("A move string can only have a max of 5 characters in length and needs a space between coords.");
 		}
 		else {
 			//TODO Test for valid move with moverules....
-			
-			// if validMove(board move);
-			board.makeMove(new NormalMove(string));
-			return true;
-			 //else
-			//return false;
-		
+			NormalMove move = new NormalMove(string);
+			if(rules.ifValidMove(board.getFenStringOfBoardState(), move)){
+				board.makeMove(move);
+				return true;
+			}
+			else {
+				return false;
+			}
 		}
 	}
 }

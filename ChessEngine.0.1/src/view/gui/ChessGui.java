@@ -8,6 +8,8 @@ import java.io.IOException;
 
 import javax.swing.*;
 
+import controller.UCIEngineCommands;
+
 public class ChessGui  {
 
 	private JFrame gui;
@@ -28,6 +30,7 @@ public class ChessGui  {
 
 		setFramesAndPanels();
 		ec = new EngineCommunicator();
+		ec.uci();
 	}
 
 	@SuppressWarnings("unused")
@@ -112,7 +115,6 @@ public class ChessGui  {
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						ec.uci();
 						if(hasChosenFromPos) {
 							if(getButton().getXY().matches(getChosenFromPosition().getXY())) {
 								resetLocations();

@@ -94,7 +94,7 @@ public class Board implements ChessBoard {
 	}
 
 	@Override
-	public String getStringRepOfBoardState() {
+	public String getFenStringOfBoardState() {
 		// TODO Auto-generated method stub
 		return null;
 	}

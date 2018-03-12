@@ -8,7 +8,7 @@ public interface ChessBoard {
 	
 	public void setUpBoard(String boardState);
 	
-	public String getStringRepOfBoardState();
+	public String getFenStringOfBoardState();
 	
 	public void makeMove(Move move);
 	

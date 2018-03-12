@@ -1,18 +1,28 @@
 package model.chess.rules;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import model.chess.Board;
+import model.chess.moves.NoValidCoordinateException;
+import model.chess.moves.NormalMove;
 
 class MoveRulesTest {
 
+	MoveRules moveRules;
+	
+	@BeforeEach
+	void setUp() {
+		moveRules = MoveRules.getInstance();
+
+	}
 	
 	@Test
 	void testGetInstance() {
-		MoveRules moveRules;
-		moveRules = MoveRules.getInstance();
-		assertEquals(MoveRules.class, moveRules.getClass()); 
+		MoveRules moveRulesX;
+		moveRulesX = MoveRules.getInstance();
+		assertEquals(MoveRules.class, moveRulesX.getClass()); 
 	}
 	
 	@Test
@@ -32,8 +42,13 @@ class MoveRulesTest {
 	}
 	
 	@Test
-	void testPawnMove() {
-		fail("Not implemented");
+	void testPawn1stepMove() throws NoValidCoordinateException {
+		assertTrue(moveRules.ifValidMove("FenNotImplemented", new NormalMove("A2 A3")));
+	}
+	
+	@Test
+	void testPawn2stepStartMove() throws NoValidCoordinateException {
+		assertTrue(moveRules.ifValidMove("FenNotImplemented", new NormalMove("A2 A4")));
 	}
 	
 	@Test
