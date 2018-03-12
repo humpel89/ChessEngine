@@ -102,6 +102,8 @@ public class Board implements ChessBoard {
 	@Override
 	public void makeMove(Move move) {
 		makeMove(move.getFrom(), move.getTo());
+		//printsBoardState
+		System.out.println(toString());
 	}
 
 	public void makeMove(int from, int to) {

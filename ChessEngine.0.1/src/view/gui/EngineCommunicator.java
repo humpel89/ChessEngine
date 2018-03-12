@@ -12,8 +12,7 @@ public class EngineCommunicator {
 	}
 	
 	public boolean move(String move) {
-		// TODO Auto-generated method stub
-		return false;
+		return engine.makeMove(move);
 	}
 
 	public void uci() {

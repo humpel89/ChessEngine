@@ -153,11 +153,12 @@ public class ChessGui  {
 	}
 
 	private boolean sendToEngine(ChessSquareButton from, ChessSquareButton to) {
-		System.out.println("Checks if valid move: " + from.getXY() + " " + to.getXY());
-		//IF Engine replies with valid move:
+		if(from.isEmpty())
+			return false;
+		String move = from.getXY() + " " + to.getXY();
+		System.out.println("Checks if valid move: " + move);
+		return ec.move(move);
 		//	Exectute move and reply with true/valid move
-		return !from.isEmpty();
-
 		//BUGG if empty square is pressed, it will delete target image also
 		//Tilldela chess_empty till FROMS bild.
 		//TODO implement alternative to fail if not a valid move.

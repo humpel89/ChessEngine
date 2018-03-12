@@ -5,9 +5,10 @@ import java.io.IOException;
 public class Engine {
 
 	private static Engine engine; 
-
+	BoardController bc = new BoardController();
+	
 	private Engine()  {
-
+		
 	}
 
 	public static Engine getInstance() throws IOException {
@@ -15,6 +16,16 @@ public class Engine {
 			engine = new Engine();
 		}
 		return engine;
+	}
+	
+	public boolean makeMove(String move) {
+		try {
+			return bc.move(move);
+		} catch (Exception e) {
+			System.out.println("Exception in Engine, move format was invalid");
+			return false;
+		}
+		
 	}
 
 	public String tell(String msg) {
@@ -77,6 +88,7 @@ public class Engine {
 	private void reply(String msg) {
 		System.out.println(msg);
 	}
+
 
 
 }

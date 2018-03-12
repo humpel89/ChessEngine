@@ -22,7 +22,7 @@ public class MoveRules {
 		return moveRules;
 	}
 	
-	public boolean ifValidMove(Board board, Move move) {
+	public boolean ifValidMove(String fen, Move move) {
 		
 		
 		
@@ -32,4 +32,5 @@ public class MoveRules {
 	public ArrayList<Move> getAllMovesForPieceAt(String from, Board board){
 		return null;
 	}
+	
 }

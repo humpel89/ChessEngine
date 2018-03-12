@@ -22,18 +22,19 @@ public class BoardController {
 		return board.isEmptySquare(CSI.interpretToInt(string));
 	}
 
-	public void move(String string) throws IncorrectStringFormatException, NoValidCoordinateException {
+	public boolean move(String string) throws IncorrectStringFormatException, NoValidCoordinateException {
 		if (string.length() > 5) {
 			throw new IncorrectStringFormatException("A move string can only have a max of 5 characters in length.");
 		}
 		else {
 			//TODO Test for valid move with moverules....
-			/*
-			 * if validMove(board move);
-			 * 		makeMove
-			 */
-			board.makeMove(new NormalMove(string));
 			
+			// if validMove(board move);
+			board.makeMove(new NormalMove(string));
+			return true;
+			 //else
+			//return false;
+		
 		}
 	}
 }
