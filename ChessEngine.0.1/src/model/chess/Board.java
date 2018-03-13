@@ -13,8 +13,6 @@ import model.chess.pieces.*;
  */
 public class Board implements ChessBoard {
 
-	private final int EMPTY = 0;
-	
 	private final String FEN_START_POSITION = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
 
 	private Square[] squares;
@@ -32,13 +30,7 @@ public class Board implements ChessBoard {
 		blackPieces = new ArrayList<>();
 		setUpNewGame();
 	}
-
-
-	/*
-	 * Builder ?????
-	 * (non-Javadoc)
-	 * @see model.chess.ChessBoard#setUpNewGame()
-	 */
+	
 	@Override
 	public void setUpNewGame() {
 		buildSquares();
@@ -85,7 +77,6 @@ public class Board implements ChessBoard {
 
 	}
 
-
 	@Override
 	public void setUpBoard(String boardState) {
 		setUpNewGame();
@@ -122,22 +113,6 @@ public class Board implements ChessBoard {
 
 	}
 
-//	public String toString() {
-//		String boardRepresentation = 
-//					      "   a  b  c  d  e  f  g  h   \n" 
-//						+ "8 [ ][ ][ ][ ][ ][ ][ ][ ] 8\n" 
-//						+ "7 [ ][ ][ ][ ][ ][ ][ ][ ] 7\n" 
-//						+ "6 [ ][ ][ ][ ][ ][ ][ ][ ] 6\n" 
-//						+ "5 [ ][ ][ ][ ][ ][ ][ ][ ] 5\n" 
-//						+ "4 [ ][ ][ ][ ][ ][ ][ ][ ] 4\n" 
-//						+ "3 [ ][ ][ ][ ][ ][ ][ ][ ] 3\n" 
-//						+ "2 [ ][ ][ ][ ][ ][ ][ ][ ] 2\n" 
-//						+ "1 [ ][ ][ ][ ][ ][ ][ ][ ] 1\n" 
-//						+ "   a  b  c  d  e  f  g  h   ";
-//
-//		return boardRepresentation;
-//	} 
-
 	public String toString() {
 
 		StringBuilder sb = new StringBuilder();
@@ -170,5 +145,4 @@ public class Board implements ChessBoard {
 		return squares[i].isEmpty();
 	}
 
-	//Alt. Gör en till toString som lägger in värdena också...
 }

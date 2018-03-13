@@ -44,9 +44,10 @@ public class NormalMove implements Move {
 			else {
 				double dy = (double) Math.abs(fromY - toY);
 				double dx = (double) Math.abs(fromX - toX);
-				if(checkDiagonal(dy, dx)) { //Chans att vara diagonal DERIVATAN FFS
+				if(checkDiagonal(dy, dx)) { 			//Chans att vara diagonal
 					direction = Direction.DIAGONAL;
-					distance = Math.abs(fromY - toY); //Since diagonal, both result from x or y would be correct distance.
+					//Since diagonal, both result from x or y would be correct distance.
+					distance = Math.abs(fromY - toY);	
 				}
 				else {
 					if(checkKnightMove(dy, dx)) {
@@ -59,8 +60,6 @@ public class NormalMove implements Move {
 				}
 			}
 		}
-
-
 	}
 
 	private boolean checkDiagonal(double dy, double dx) {
@@ -74,19 +73,17 @@ public class NormalMove implements Move {
 	private boolean checkKnightMove(double dy, double dx) {
 		double derivate = dy / dx;
 		double hypotenusa = Math.sqrt(Math.pow(dy, 2) + Math.pow(dx, 2));
-		//Derivate 2 or 0,5 BUT Also remember distance cant be more than 3.
 		if((derivate == 2.0 ||derivate == 0.5) && (hypotenusa == Math.sqrt(5.0)))
 			return true;
 		else
 			return false;
 	}
-	
-	
+
 	public Direction getDirection() {
 		return direction;
 	}
 
-	
+
 	public int getDistance() {
 		return distance;
 	}
