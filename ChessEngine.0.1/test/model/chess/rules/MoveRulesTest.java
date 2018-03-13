@@ -44,11 +44,20 @@ class MoveRulesTest {
 	@Test
 	void testPawn1stepMove() throws NoValidCoordinateException {
 		assertTrue(moveRules.ifValidMove("FenNotImplemented", new NormalMove("A2 A3")));
+		fail("Implement tests for black pawns");
+		//TODO IMplement check for blacks pawns, they cause test to fail now
+		//assertTrue(moveRules.ifValidMove("FenNotImplemented", new NormalMove("G7 G6")));
+		
+		//assertFalse(moveRules.ifValidMove("FenNotImplemented", new NormalMove("G8 G6")));
+		//assertFalse(moveRules.ifValidMove("FenNotImplemented", new NormalMove("A2 B2")));
 	}
 	
 	@Test
 	void testPawn2stepStartMove() throws NoValidCoordinateException {
 		assertTrue(moveRules.ifValidMove("FenNotImplemented", new NormalMove("A2 A4")));
+		
+		assertFalse(moveRules.ifValidMove("FenNotImplemented", new NormalMove("A3 A5")));
+		assertFalse(moveRules.ifValidMove("FenNotImplemented", new NormalMove("A2 A5")));
 	}
 	
 	@Test

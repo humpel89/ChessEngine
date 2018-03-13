@@ -6,6 +6,7 @@ public class NormalMove implements Move {
 	private int to;
 
 	private Direction direction;
+	private int distance;
 
 	public NormalMove(String stringOfMove) throws NoValidCoordinateException {
 		setMove(stringOfMove);
@@ -33,20 +34,24 @@ public class NormalMove implements Move {
 		int toY = Integer.valueOf(to.substring(1));
 		if (fromY == toY) {
 			direction = Direction.HORIZONTAL;
+			distance = Math.abs(fromX - toX);
 		}
 		else {
 			if (fromX == toX){
 				direction = Direction.VERTICAL;
+				distance = Math.abs(fromY - toY);
 			}
 			else {
 				double dy = (double) Math.abs(fromY - toY);
 				double dx = (double) Math.abs(fromX - toX);
 				if(checkDiagonal(dy, dx)) { //Chans att vara diagonal DERIVATAN FFS
 					direction = Direction.DIAGONAL;
+					distance = Math.abs(fromY - toY); //Since diagonal, both result from x or y would be correct distance.
 				}
 				else {
 					if(checkKnightMove(dy, dx)) {
 						direction = Direction.KNIGHTMOVE;
+						distance = 3;
 					}
 					else
 						throw new NoValidCoordinateException(
@@ -79,6 +84,11 @@ public class NormalMove implements Move {
 	
 	public Direction getDirection() {
 		return direction;
+	}
+
+	
+	public int getDistance() {
+		return distance;
 	}
 
 	private int getIntFromCoordinate(String coordinate) throws NoValidCoordinateException {

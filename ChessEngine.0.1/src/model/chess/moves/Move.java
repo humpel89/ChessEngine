@@ -10,4 +10,7 @@ public interface Move {
 		
 		public int getTo();
 		
+		public Direction getDirection();
+		
+		public int getDistance();
 }

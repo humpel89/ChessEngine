@@ -36,7 +36,7 @@ class BoardControllerTest {
 	@Test
 	void testMove() throws IncorrectStringFormatException, NoValidCoordinateException {
 		assertTrue(bc.isSquareEmpty("A4"));
-		bc.move("A2 A4");
+		bc.move("A2 A4"); //Implement valid move check in MoveRules
 		assertFalse(bc.isSquareEmpty("A4"));
 	}
 	@Test
